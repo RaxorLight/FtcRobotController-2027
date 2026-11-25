@@ -28,7 +28,23 @@ public class TeleOpCode extends OpMode {
         backLeft.setPower((y - x + rx)* 0.8);
         frontRight.setPower((y - x - rx)* 0.8);
         backRight.setPower((y + x - rx)*0.8);
-    //put loop code stuff here
+
+        if (gamepad1.right_bumper) {
+            intake.setPower(0.5);
+        } else if (gamepad1.left_bumper) {
+            intake.setPower(-0.5);
+        } else {
+            intake.setPower(0);
+        }
+
+        if (gamepad1.right_trigger > 0) {
+            shooter.setPower(gamepad1.right_trigger * 0.8);
+        } else if  (gamepad1.left_trigger > 0) {
+            shooter.setPower(gamepad1.left_trigger * -0.3);
+        } else {
+            shooter.setPower(0);
+        }
+        telemetry.update();
     }
 }
 
